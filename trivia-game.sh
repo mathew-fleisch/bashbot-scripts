@@ -29,9 +29,9 @@ response=$(./slackApi.sh \
     --message "$question")
 thread=$(echo "$response" | jq -r '.ts')
 sleep 1
-./slackApi.sh \
+aresponse=$(./slackApi.sh \
     --slack-token $SLACK_TOKEN \
     --slack-channel $TRIGGERED_CHANNEL_ID \
     --endpoint chat.postMessage \
     --thread-ts $thread \
-    --message "$answer" > /dev/null
+    --message "$answer")
