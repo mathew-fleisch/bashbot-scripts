@@ -4,7 +4,7 @@ trivia_yaml=${1:-friends.yaml}
 #C01RUPNRN78
 
 # Total number of questions
-num_questions=$(yq e '.[].q' $trivia_yaml | sort | wc -l)
+num_questions=$(yq e '.[].q' $trivia_yaml | wc -l | awk '{print $1}')
 
 # Random question index
 random_question=$(shuf -i 1-$num_questions -n 1)
