@@ -34,7 +34,4 @@ sleep 1
     --slack-channel $TRIGGERED_CHANNEL_ID \
     --endpoint chat.postMessage \
     --thread-ts $thread \
-    --message "$answer"
-
-
-
+    --message "$answer" > /dev/null
