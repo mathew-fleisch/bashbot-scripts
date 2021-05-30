@@ -17,7 +17,7 @@ question=$(yq e '.['$random_index'].q' $trivia_yaml)
 answer=$(yq e '.['$random_index'].a' $trivia_yaml)
 
 # Meta-Data
-# metadata=$(yq e '.['$random_index'].d' $trivia_yaml)
+metadata=$(yq e '.['$random_index'].d' $trivia_yaml)
 
 # echo "$metadata: $question"
 # echo "$answer"
@@ -26,7 +26,7 @@ response=$(./slackApi.sh \
     --slack-token $SLACK_TOKEN \
     --slack-channel $TRIGGERED_CHANNEL_ID \
     --endpoint chat.postMessage \
-    --message "$question")
+    --message "$metadata: $question")
 thread=$(echo "$response" | jq -r '.ts')
 sleep 1
 aresponse=$(./slackApi.sh \
