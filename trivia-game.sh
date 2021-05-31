@@ -27,7 +27,7 @@ response=$(./slackApi.sh \
     --endpoint chat.postMessage \
     --message "$metadata: $question")
 thread=$(echo "$response" | jq -r '.ts')
-sleep 1
+sleep 10
 aresponse=$(./slackApi.sh \
     --slack-token $SLACK_TOKEN \
     --slack-channel $TRIGGERED_CHANNEL_ID \
