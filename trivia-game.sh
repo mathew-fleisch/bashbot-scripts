@@ -22,14 +22,14 @@ metadata=$(yq e '.['$random_index'].d' $trivia_yaml)
 # echo "$answer"
 
 response=$(./slackApi.sh \
-    --slack-token $SLACK_TOKEN \
+    --slack-token $SLACK_BOT_TOKEN \
     --slack-channel $TRIGGERED_CHANNEL_ID \
     --endpoint chat.postMessage \
     --message "$metadata: $question")
 thread=$(echo "$response" | jq -r '.ts')
 sleep 10
 aresponse=$(./slackApi.sh \
-    --slack-token $SLACK_TOKEN \
+    --slack-token $SLACK_BOT_TOKEN \
     --slack-channel $TRIGGERED_CHANNEL_ID \
     --endpoint chat.postMessage \
     --thread-ts $thread \
